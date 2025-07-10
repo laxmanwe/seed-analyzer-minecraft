@@ -1,0 +1,68 @@
+    private void loadSamplePattern() {
+        // Basit ve gerçekçi pattern'ler oluştur
+        patternPanel.clearPattern();
+        
+        String[] options = {
+            "Taş Pattern (Yaygın)", 
+            "Toprak Pattern (Çok Yaygın)", 
+            "Elmas Cevheri (Nadir)",
+            "Karışık Pattern (Test)",
+            "Sadece Hava (Air Test)"
+        };
+        
+        String choice = (String) JOptionPane.showInputDialog(
+            this,
+            "Hangi pattern'i yüklemek istiyorsunuz?",
+            "Pattern Seçimi",
+            JOptionPane.QUESTION_MESSAGE,
+            null,
+            options,
+            options[0]
+        );
+        
+        if (choice == null) return;
+        
+        if (choice.equals(options[0])) {
+            // Taş pattern - çok yaygın
+            patternPanel.setBlockAt(0, 0, 0, "minecraft:stone", 0);
+            patternPanel.setBlockAt(1, 0, 0, "minecraft:stone", 0);
+            patternPanel.setBlockAt(0, 0, 1, "minecraft:stone", 0);
+            patternPanel.setBlockAt(1, 0, 1, "minecraft:stone", 0);
+            logArea.append("✓ Taş pattern'i yüklendi (2x2 alan)\n");
+            
+        } else if (choice.equals(options[1])) {
+            // Toprak pattern - en yaygın
+            patternPanel.setBlockAt(0, 0, 0, "minecraft:dirt", 0);
+            patternPanel.setBlockAt(1, 0, 0, "minecraft:dirt", 0);
+            patternPanel.setBlockAt(0, 0, 1, "minecraft:grass_block", 0);
+            patternPanel.setBlockAt(1, 0, 1, "minecraft:grass_block", 0);
+            logArea.append("✓ Toprak/çim pattern'i yüklendi\n");
+            
+        } else if (choice.equals(options[2])) {
+            // Orijinal elmas pattern
+            patternPanel.setBlockAt(1, 0, 1, "minecraft:diamond_ore", 0);
+            patternPanel.setBlockAt(2, 0, 1, "minecraft:diamond_ore", 0);
+            patternPanel.setBlockAt(1, 0, 2, "minecraft:diamond_ore", 0);
+            patternPanel.setBlockAt(2, 0, 2, "minecraft:diamond_ore", 0);
+            
+            patternPanel.setBlockAt(1, 1, 1, "minecraft:diamond_ore", 0);
+            patternPanel.setBlockAt(2, 1, 2, "minecraft:diamond_ore", 0);
+            logArea.append("✓ Elmas cevheri pattern'i yüklendi (nadir)\n");
+            
+        } else if (choice.equals(options[3])) {
+            // Karışık test pattern
+            patternPanel.setBlockAt(0, 0, 0, "minecraft:stone", 0);
+            patternPanel.setBlockAt(1, 0, 0, "minecraft:air", 0);
+            patternPanel.setBlockAt(0, 0, 1, "minecraft:dirt", 0);
+            logArea.append("✓ Karışık test pattern'i yüklendi\n");
+            
+        } else if (choice.equals(options[4])) {
+            // Sadece hava - kesinlikle bulunacak
+            patternPanel.setBlockAt(0, 0, 0, "minecraft:air", 0);
+            patternPanel.setBlockAt(1, 0, 0, "minecraft:air", 0);
+            logArea.append("✓ Hava pattern'i yüklendi (test için)\n");
+        }
+        
+        patternPanel.setCurrentY(0); // İlk katmanı göster
+        patternPanel.repaint();
+    }
