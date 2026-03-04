@@ -8,7 +8,12 @@ import models.BlockData;
  * Desteklenen formatlar:
  * - 1.13-1.15 (DataVersion < 2529): Eski paketleme (degerler long sinirlarini asabilir)
  * - 1.16-1.17 (DataVersion 2529-2859): Yeni paketleme (degerler long sinirlarini asmaz)
- * - 1.18+ (DataVersion >= 2860): Yeni section yapisi, sections root altinda
+ * - 1.18-1.20.x (DataVersion 2860-3700): Yeni section yapisi, sections root altinda
+ * - 1.21-1.21.4+ (DataVersion 3837-4189+): 1.18 ile ayni blok depolama formati
+ *
+ * DataVersion referansi:
+ *   1.13=1519, 1.14=1952, 1.15=2225, 1.16=2566, 1.17=2724,
+ *   1.18=2860, 1.19=3105, 1.20=3463, 1.20.4=3700, 1.21=3953, 1.21.4=4189
  */
 public class ChunkReader {
 

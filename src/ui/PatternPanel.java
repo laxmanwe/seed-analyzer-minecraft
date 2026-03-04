@@ -60,6 +60,35 @@ public class PatternPanel extends JPanel {
         addBlock("minecraft:sand", "Kum", new Color(220, 210, 160));
         addBlock("minecraft:water", "Su", new Color(40, 80, 200));
         addBlock("minecraft:lava", "Lav", new Color(220, 100, 20));
+
+        // 1.19+ bloklar
+        addBlock("minecraft:mud", "Camur", new Color(60, 55, 55));
+        addBlock("minecraft:sculk", "Sculk", new Color(10, 30, 40));
+        addBlock("minecraft:sculk_catalyst", "Sculk Katalizor", new Color(15, 45, 55));
+        addBlock("minecraft:sculk_shrieker", "Sculk Cigligi", new Color(20, 50, 60));
+        addBlock("minecraft:sculk_sensor", "Sculk Sensor", new Color(10, 60, 65));
+
+        // 1.20+ bloklar
+        addBlock("minecraft:cherry_log", "Kiraz Kutugu", new Color(180, 100, 120));
+        addBlock("minecraft:suspicious_sand", "Suphe Kum", new Color(210, 200, 150));
+        addBlock("minecraft:suspicious_gravel", "Suphe Cakil", new Color(140, 130, 130));
+
+        // 1.21+ bloklar
+        addBlock("minecraft:trial_spawner", "Trial Spawner", new Color(70, 110, 140));
+        addBlock("minecraft:vault", "Vault", new Color(90, 70, 50));
+        addBlock("minecraft:heavy_core", "Agir Cekirdek", new Color(55, 50, 60));
+        addBlock("minecraft:crafter", "Crafter", new Color(140, 90, 60));
+        addBlock("minecraft:tuff_bricks", "Tuf Tugla", new Color(115, 115, 100));
+        addBlock("minecraft:chiseled_tuff", "Oyma Tuf", new Color(110, 110, 95));
+        addBlock("minecraft:polished_tuff", "Cilali Tuf", new Color(120, 120, 105));
+        addBlock("minecraft:chiseled_copper", "Oyma Bakir", new Color(190, 120, 75));
+        addBlock("minecraft:copper_grate", "Bakir Izgara", new Color(170, 110, 65));
+        addBlock("minecraft:copper_bulb", "Bakir Ampul", new Color(195, 125, 70));
+
+        // 1.21.2+ bloklar (Pale Garden)
+        addBlock("minecraft:pale_oak_log", "Soluk Mese", new Color(190, 185, 170));
+        addBlock("minecraft:pale_moss_block", "Soluk Yosun", new Color(170, 175, 150));
+        addBlock("minecraft:creaking_heart", "Ciritli Kalp", new Color(80, 60, 50));
     }
 
     private static void addBlock(String id, String name, Color color) {

@@ -8,7 +8,7 @@ Gercek Minecraft dunya dosyalarini (.mca region dosyalari) okuyarak kullanici ta
 
 - **Gercek Dunya Analizi**: Minecraft save dosyalarini dogrudan okur (.mca Anvil formati)
 - **NBT Parser**: Minecraft'in Named Binary Tag formatini tam destekler
-- **Coklu Format Destegi**: 1.13-1.15 (eski paketleme), 1.16-1.17, 1.18+ (yeni section yapisi)
+- **Coklu Format Destegi**: 1.13-1.15, 1.16-1.17, 1.18-1.20.x, 1.21-1.21.4+
 - **4x4x4 Blok Deseni Tanimlama**: 3D grid uzerinde gorsel blok yerlestirme
 - **Cok Is Parcacikli Arama**: Paralel chunk analizi ile hizli tarama
 - **Gercek Zamanli Ilerleme**: Arama sirasinda anlik durum bildirimi
@@ -19,6 +19,9 @@ Gercek Minecraft dunya dosyalarini (.mca region dosyalari) okuyarak kullanici ta
   - Temel bloklar: Tas, Toprak, Cim, Kayrak Tasi, Tuf, Bedrock, Obsidyen, Cakil, Kum
   - Tum cevherler: Komur, Demir, Altin, Elmas, Kiziltas, Lapis Lazuli, Zumrut, Bakir
   - Derin cevher varyantlari (1.17+)
+  - Sculk bloklari (1.19+)
+  - Trial Spawner, Vault, Crafter, Tuf/Bakir varyantlari (1.21+)
+  - Pale Garden bloklari: Soluk Mese, Soluk Yosun, Creaking Heart (1.21.2+)
   - Su, Lav, Hava
 
 ## Derleme ve Calistirma

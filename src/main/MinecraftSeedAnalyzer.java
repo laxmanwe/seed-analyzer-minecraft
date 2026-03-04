@@ -104,7 +104,7 @@ public class MinecraftSeedAnalyzer extends JFrame {
 
         gbc.gridx = 3; gbc.weightx = 0;
         versionCombo = new JComboBox<>(new String[]{
-                "1.20.x", "1.19.x", "1.18.x", "1.17.x", "1.16.x"
+                "1.21.x", "1.20.x", "1.19.x", "1.18.x", "1.17.x", "1.16.x", "1.13-1.15"
         });
         topPanel.add(versionCombo, gbc);
 
