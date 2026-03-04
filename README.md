@@ -1,68 +1,112 @@
 # Minecraft Seed Analyzer
 
-Java Swing kullanılarak geliştirilmiş Minecraft seed analiz ve blok arama botu.
+Java Swing kullanilarak gelistirilmis Minecraft dunya analiz ve blok arama araci.
 
-## Özellikler
+Gercek Minecraft dunya dosyalarini (.mca region dosyalari) okuyarak kullanici tarafindan tanimlanan blok desenlerini arar.
 
-- **Seed Girişi**: Numeric veya string seed desteği
-- **Minecraft Sürüm Seçimi**: 1.16.x - 1.20.x arası sürümler
-- **4x4x4 Blok Deseni Tanımlama**: 3D grid üzerinde blok yerleştirme
-- **Blok Rotasyon Desteği**: Her blok için metadata (0-15) değeri
+## Ozellikler
+
+- **Gercek Dunya Analizi**: Minecraft save dosyalarini dogrudan okur (.mca Anvil formati)
+- **NBT Parser**: Minecraft'in Named Binary Tag formatini tam destekler
+- **Coklu Format Destegi**: 1.13-1.15 (eski paketleme), 1.16-1.17, 1.18+ (yeni section yapisi)
+- **4x4x4 Blok Deseni Tanimlama**: 3D grid uzerinde gorsel blok yerlestirme
+- **Cok Is Parcacikli Arama**: Paralel chunk analizi ile hizli tarama
+- **Gercek Zamanli Ilerleme**: Arama sirasinda anlik durum bildirimi
+- **Otomatik Seed Okuma**: level.dat dosyasindan seed otomatik algilama
+- **Otomatik Alan Algilama**: Dunya boyutuna gore arama alani onerisi
+- **Sonuc Disa Aktarma**: Bulunan desenleri dosyaya kaydetme
 - **Desteklenen Bloklar**:
-  - Temel bloklar: Toprak, Taş, Kayrak Taşı, Tüf, Bedrock
-  - Tüm cevherler: Kömür, Demir, Altın, Elmas, Kızıltaş, Lapis Lazuli, Zümrüt, Bakır
-  - Derin cevher varyantları (1.17+)
-- **Arama Alanı Belirleme**: X, Z ve Y koordinat aralıkları
-- **Gerçek Zamanlı İlerleme Takibi**: Arama sırasında anlık durum bildirimi
-- **Sonuç Listesi**: Bulunan desenlerin koordinatları
+  - Temel bloklar: Tas, Toprak, Cim, Kayrak Tasi, Tuf, Bedrock, Obsidyen, Cakil, Kum
+  - Tum cevherler: Komur, Demir, Altin, Elmas, Kiziltas, Lapis Lazuli, Zumrut, Bakir
+  - Derin cevher varyantlari (1.17+)
+  - Su, Lav, Hava
 
-## Derleme ve Çalıştırma
+## Derleme ve Calistirma
 
 ### Gereksinimler
-- Java JDK 8 veya üzeri
-- Java Swing (JDK ile birlikte gelir)
+- Java JDK 8 veya uzeri
 
 ### Derleme
-```bash
-cd minecraft-seed-analyzer/src
-javac -d ../bin main/MinecraftSeedAnalyzer.java ui/*.java models/*.java analyzer/*.java
-```
 
-### Çalıştırma
+**Linux / macOS:**
 ```bash
 cd minecraft-seed-analyzer
+mkdir -p bin
+javac -encoding UTF-8 -d bin src/main/*.java src/ui/*.java src/models/*.java src/analyzer/*.java src/minecraft/*.java
+```
+
+**Windows:**
+```bash
+compile.bat
+```
+
+### Calistirma
+
+**Linux / macOS:**
+```bash
 java -cp bin main.MinecraftSeedAnalyzer
 ```
 
-## Kullanım
+**Windows:**
+```bash
+run.bat
+```
 
-1. **Seed Girişi**: Üst panelde seed değerini girin (örn: 12345 veya "myworld")
-2. **Sürüm Seçimi**: Minecraft sürümünü seçin
-3. **Arama Alanı**: Başlangıç/bitiş X,Z koordinatları ve Y aralığını belirleyin
-4. **Blok Deseni Oluşturma**:
-   - Y katmanını seçin (0-3)
-   - 4x4 grid üzerinde "Boş" butonlara tıklayın
-   - Blok seçin ve rotasyon değerini girin
-   - İstediğiniz deseni oluşturun
-5. **Aramayı Başlat**: Alt paneldeki "Aramayı Başlat" butonuna tıklayın
+## Kullanim
 
-## Notlar
+1. **Dunya Secimi**: "Gozat..." butonuna tiklayarak Minecraft dunya klasorunuzu secin
+   - Genellikle `.minecraft/saves/` altindaki klasorlerdir
+   - Secilen dunya icinde `region/` klasoru ve `.mca` dosyalari olmalidir
+2. **Otomatik Bilgiler**: Seed, dunya adi ve diger bilgiler `level.dat`'tan okunur
+3. **Arama Alani**: X, Z koordinat araligini ve Y (yukseklik) araligini belirleyin
+   - "Otomatik Algiyla" butonu dunya boyutuna gore uygun bir aralik onerir
+4. **Blok Deseni Olusturma**:
+   - Y katmanini secin (0-3)
+   - Blok tipini ust panelden secin
+   - 4x4 grid uzerinde tikla yarak blok yerlestirin
+   - Sag tiklayarak blok kaldirin
+   - Hazir desenleri "Ornek Desenler" butonlarindan yukleyebilirsiniz
+5. **Arama**: "Aramayi Baslat" butonuna tiklayin
+   - Ilerleme durumu gercek zamanli olarak guncellenir
+   - Bulunan eslesmeler aninda sonuc listesine eklenir
+   - "Durdur" butonu ile aramayi iptal edebilirsiniz
+6. **Sonuclari Kaydetme**: "Disa Aktar" butonu ile sonuclari dosyaya kaydedin
 
-- Bu demo versiyonu gerçek Minecraft world generation API'si kullanmamaktadır
-- Gerçek bir uygulama için Minecraft'ın chunk data formatını parse eden bir kütüphane gereklidir
-- Arama algoritması şu anda simüle edilmiş sonuçlar üretmektedir
+## Teknik Detaylar
 
-## Geliştirme Önerileri
+### Mimari
 
-1. **Minecraft World API Entegrasyonu**: 
-   - [Minecraft Wiki](https://minecraft.wiki/w/Chunk_format) chunk formatı
-   - NBT (Named Binary Tag) parser eklenmeli
+```
+src/
+├── main/
+│   └── MinecraftSeedAnalyzer.java    # Ana uygulama ve Swing GUI
+├── ui/
+│   └── PatternPanel.java            # 4x4x4 blok deseni editoru
+├── models/
+│   ├── BlockData.java               # Blok tipi + metadata
+│   ├── BlockPattern.java            # 4x4x4 desen yapisi
+│   └── SearchResult.java            # Arama sonucu koordinatlari
+├── analyzer/
+│   ├── PatternMatcher.java          # Cok is parcacikli arama motoru
+│   └── RealSeedAnalyzer.java        # Dunya dizini dogrulama araclari
+└── minecraft/
+    ├── NBTTag.java                  # NBT veri yapisi
+    ├── NBTReader.java               # NBT format parser
+    ├── RegionFile.java              # .mca (Anvil) dosya okuyucu
+    └── ChunkReader.java            # Chunk veri cikarici
+```
 
-2. **Performans İyileştirmeleri**:
-   - Multi-threading ile paralel chunk analizi
-   - Chunk cache mekanizması
+### Region Dosyasi Formati (.mca)
 
-3. **Ek Özellikler**:
-   - Sonuçları dosyaya kaydetme
-   - Desen şablonlarını yükleme/kaydetme
-   - Harita görünümü entegrasyonu
+- Her region dosyasi 32x32 chunk icerir (512x512 blok alani)
+- Dosya adi: `r.{regionX}.{regionZ}.mca`
+- Ilk 8KB: Konum ve zaman damgasi tablolari
+- Chunk verisi: Zlib/GZip ile sikistirilmis NBT verisi
+
+### Chunk Veri Formati
+
+- **1.13+**: Palette-based blok depolama
+  - Her section (16x16x16) kendi palette ve data dizisine sahip
+  - Blok indeksleri long dizisinde paketlenmis (bit-packed)
+- **1.16+**: Yeni paketleme - degerler long sinirlarini asmaz
+- **1.18+**: Yeni section yapisi, Y=-64 ile Y=320 arasi destek

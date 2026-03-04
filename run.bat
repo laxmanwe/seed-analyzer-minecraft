@@ -1,14 +1,18 @@
 @echo off
 echo Minecraft Seed Analyzer baslatiliyor...
 
-REM Bin klasoru kontrolu
-if not exist bin (
-    echo Lutfen once compile.bat dosyasini calistirin!
-    pause
-    exit /b 1
+cd /d "%~dp0"
+
+if not exist "bin\main\MinecraftSeedAnalyzer.class" (
+    echo Derlenmi dosyalar bulunamadi! Once derleniyor...
+    call compile.bat
+    echo.
 )
 
-REM Programi calistir
-java -cp bin main.MinecraftSeedAnalyzer
-
-pause
+if exist "bin\main\MinecraftSeedAnalyzer.class" (
+    echo Uygulama baslatiliyor...
+    java -cp bin main.MinecraftSeedAnalyzer
+) else (
+    echo Derleme basarisiz!
+    pause
+)
